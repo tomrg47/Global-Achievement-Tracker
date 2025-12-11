@@ -1,0 +1,174 @@
+.flex {
+  display: flex;
+}
+.flex--row {
+  flex-direction: row;
+}
+.flex--row-reverse {
+  flex-direction: row-reverse;
+}
+.flex--column {
+  flex-direction: column;
+}
+.flex--column-reverse {
+  flex-direction: column-reverse;
+}
+.flex--justify-start {
+  justify-content: flex-start;
+}
+.flex--justify-end {
+  justify-content: flex-end;
+}
+.flex--justify-center {
+  justify-content: center;
+}
+.flex--justify-between {
+  justify-content: space-between;
+}
+.flex--justify-around {
+  justify-content: space-around;
+}
+.flex--justify-evenly {
+  justify-content: space-evenly;
+}
+.flex--align-start {
+  align-items: flex-start;
+}
+.flex--align-end {
+  align-items: flex-end;
+}
+.flex--align-center {
+  align-items: center;
+}
+.flex--align-baseline {
+  align-items: baseline;
+}
+.flex--align-stretch {
+  align-items: stretch;
+}
+.flex--content-start {
+  align-content: flex-start;
+}
+.flex--content-end {
+  align-content: flex-end;
+}
+.flex--content-center {
+  align-content: center;
+}
+.flex--content-between {
+  align-content: space-between;
+}
+.flex--content-around {
+  align-content: space-around;
+}
+.flex--content-stretch {
+  align-content: stretch;
+}
+.flex--wrap {
+  flex-wrap: wrap;
+}
+.flex--nowrap {
+  flex-wrap: nowrap;
+}
+.flex--wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+.flex--gap-xs {
+  gap: 0.25rem;
+}
+.flex--gap-sm {
+  gap: 0.5rem;
+}
+.flex--gap-md {
+  gap: 1rem;
+}
+.flex--gap-lg {
+  gap: 1.5rem;
+}
+.flex--gap-xl {
+  gap: 2rem;
+}
+.flex--gap-2xl {
+  gap: 3rem;
+}
+
+.flex-item--grow-0 {
+  flex-grow: 0;
+}
+.flex-item--grow-1 {
+  flex-grow: 1;
+}
+.flex-item--grow-2 {
+  flex-grow: 2;
+}
+.flex-item--shrink-0 {
+  flex-shrink: 0;
+}
+.flex-item--shrink-1 {
+  flex-shrink: 1;
+}
+.flex-item--basis-auto {
+  flex-basis: auto;
+}
+.flex-item--basis-0 {
+  flex-basis: 0;
+}
+.flex-item--basis-full {
+  flex-basis: 100%;
+}
+.flex-item--basis-half {
+  flex-basis: 50%;
+}
+.flex-item--basis-third {
+  flex-basis: 33.333%;
+}
+.flex-item--basis-quarter {
+  flex-basis: 25%;
+}
+.flex-item--align-self-auto {
+  align-self: auto;
+}
+.flex-item--align-self-start {
+  align-self: flex-start;
+}
+.flex-item--align-self-end {
+  align-self: flex-end;
+}
+.flex-item--align-self-center {
+  align-self: center;
+}
+.flex-item--align-self-baseline {
+  align-self: baseline;
+}
+.flex-item--align-self-stretch {
+  align-self: stretch;
+}
+.flex-item--order-first {
+  order: -1;
+}
+.flex-item--order-last {
+  order: 999;
+}
+.flex-item--order-none {
+  order: 0;
+}
+
+.flex--center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex--between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex--column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*# sourceMappingURL=main.css.map */
