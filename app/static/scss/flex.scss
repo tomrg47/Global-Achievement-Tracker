@@ -1,0 +1,239 @@
+// Flexbox Utility Classes - BEM Naming Convention
+
+// Base flex container
+.flex {
+  display: flex;
+
+  // Direction modifiers
+  &--row {
+    flex-direction: row;
+  }
+
+  &--row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  // Justify content modifiers
+  &--justify-start {
+    justify-content: flex-start;
+  }
+
+  &--justify-end {
+    justify-content: flex-end;
+  }
+
+  &--justify-center {
+    justify-content: center;
+  }
+
+  &--justify-between {
+    justify-content: space-between;
+  }
+
+  &--justify-around {
+    justify-content: space-around;
+  }
+
+  &--justify-evenly {
+    justify-content: space-evenly;
+  }
+
+  // Align items modifiers
+  &--align-start {
+    align-items: flex-start;
+  }
+
+  &--align-end {
+    align-items: flex-end;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--align-baseline {
+    align-items: baseline;
+  }
+
+  &--align-stretch {
+    align-items: stretch;
+  }
+
+  // Align content modifiers
+  &--content-start {
+    align-content: flex-start;
+  }
+
+  &--content-end {
+    align-content: flex-end;
+  }
+
+  &--content-center {
+    align-content: center;
+  }
+
+  &--content-between {
+    align-content: space-between;
+  }
+
+  &--content-around {
+    align-content: space-around;
+  }
+
+  &--content-stretch {
+    align-content: stretch;
+  }
+
+  // Wrap modifiers
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  &--nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &--wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+
+  // Gap modifiers
+  &--gap-xs {
+    gap: 0.25rem;
+  }
+
+  &--gap-sm {
+    gap: 0.5rem;
+  }
+
+  &--gap-md {
+    gap: 1rem;
+  }
+
+  &--gap-lg {
+    gap: 1.5rem;
+  }
+
+  &--gap-xl {
+    gap: 2rem;
+  }
+
+  &--gap-2xl {
+    gap: 3rem;
+  }
+}
+
+// Flex item utilities
+.flex-item {
+  // Grow modifiers
+  &--grow-0 {
+    flex-grow: 0;
+  }
+
+  &--grow-1 {
+    flex-grow: 1;
+  }
+
+  &--grow-2 {
+    flex-grow: 2;
+  }
+
+  // Shrink modifiers
+  &--shrink-0 {
+    flex-shrink: 0;
+  }
+
+  &--shrink-1 {
+    flex-shrink: 1;
+  }
+
+  // Basis modifiers
+  &--basis-auto {
+    flex-basis: auto;
+  }
+
+  &--basis-0 {
+    flex-basis: 0;
+  }
+
+  &--basis-full {
+    flex-basis: 100%;
+  }
+
+  &--basis-half {
+    flex-basis: 50%;
+  }
+
+  &--basis-third {
+    flex-basis: 33.333%;
+  }
+
+  &--basis-quarter {
+    flex-basis: 25%;
+  }
+
+  // Align self modifiers
+  &--align-self-auto {
+    align-self: auto;
+  }
+
+  &--align-self-start {
+    align-self: flex-start;
+  }
+
+  &--align-self-end {
+    align-self: flex-end;
+  }
+
+  &--align-self-center {
+    align-self: center;
+  }
+
+  &--align-self-baseline {
+    align-self: baseline;
+  }
+
+  &--align-self-stretch {
+    align-self: stretch;
+  }
+
+  // Order modifiers
+  &--order-first {
+    order: -1;
+  }
+
+  &--order-last {
+    order: 999;
+  }
+
+  &--order-none {
+    order: 0;
+  }
+}
+
+// Common flex combinations
+.flex--center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex--between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex--column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

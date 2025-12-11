@@ -12,10 +12,12 @@ def create_app(config_name="development"):
     assets.directory = 'app/static'
     assets.url = '/static'
     
-    scss = Bundle('scss/main.scss', filters='libsass', output='css/main.css')
+    scss = Bundle('scss/main.scss', filters='scss', output='css/main.css')
     assets.register('scss_all', scss)
     # Register blueprints here
     # from .routes.auth import auth_bp
     # app.register_blueprint(auth_bp)
+    from .routes.home import home_bp
+    app.register_blueprint(home_bp)
 
     return app
