@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - Global Achievement Tracker{% endblock %}
+
+{% from "components/input.html" import input %}
+{% from "components/button.html" import button %}
+{% from "components/sso.html" import sso_buttons %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-header">
+        <h2>Create Account</h2>
+        <p>Join us to track your achievements</p>
+    </div>
+    
+    <form action="{{ url_for('auth.api_signup') }}" method="POST">
+        {{ input("username", "Username", placeholder="Choose a username", required=true) }}
+        {{ input("email", "Email Address", type="email", placeholder="Enter your email", required=true) }}
+        {{ input("password", "Password", type="password", placeholder="Create a password", required=true) }}
+        {{ input("confirm_password", "Confirm Password", type="password", placeholder="Confirm your password", required=true) }}
+        
+        <div class="flex flex--justify-center" style="margin-top: 2rem;">
+            {{ button("Sign Up", type="primary", size="lg", rounded=true) }}
+        </div>
+    </form>
+
+    {{ sso_buttons() }}
+    
+    <div class="flex flex--justify-center" style="margin-top: 1.5rem;">
+        <p style="font-size: 0.9rem; color: var(--color-secondary-200);">
+            Already have an account? <a href="{{ url_for('auth.login') }}" style="color: var(--color-primary-400);">Sign in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

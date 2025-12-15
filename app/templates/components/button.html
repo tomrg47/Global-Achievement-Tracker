@@ -1,0 +1,5 @@
+{% macro button(text, type="primary", size="md", rounded=true, disabled=false, style="") %}
+<button class="btn btn-{{ type }} btn-{{ size }} {% if rounded %}btn-rounded{% else %}btn-unrounded{% endif %}" {% if disabled %}disabled{% endif %} {% if style %}style="{{ style }}"{% endif %}>
+    {{ text }}
+</button>
+{% endmacro %}

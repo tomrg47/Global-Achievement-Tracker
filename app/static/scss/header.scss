@@ -1,0 +1,95 @@
+@use './theme.scss';
+
+.header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-surface-light);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary-400);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    
+    &:hover {
+      color: var(--color-primary-300);
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  &__nav-link {
+    padding: 0.5rem 1rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-unrounded);
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--color-text-primary);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    &--active {
+      color: var(--color-primary-400);
+      background-color: rgba(168, 85, 247, 0.1);
+      
+      &:hover {
+        color: var(--color-primary-300);
+        background-color: rgba(168, 85, 247, 0.15);
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .header {
+    &__container {
+      padding: 0.875rem 1rem;
+      gap: 1rem;
+    }
+
+    &__nav {
+      display: none; // Hide nav on mobile (add mobile menu toggle if needed)
+    }
+
+    &__logo {
+      font-size: 1.25rem;
+    }
+  }
+}

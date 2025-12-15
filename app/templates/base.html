@@ -10,16 +10,18 @@
     <link rel="stylesheet" href="../static/css/main.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <h1><a href="{{ url_for('home.home') }}">Global Achievement Tracker</a></h1>
-                <ul class="nav-links">
-                    {# Navigation links will be added when auth routes are created #}
-                </ul>
-            </div>
-        </nav>
-    </header>
+    {% from "components/header.html" import header %}
+
+    {# Full header with navigation #}
+    {{ header(
+    brand_text="MyApp",
+    nav_items=[
+        {"text": "Home", "url": "/", "active": true},
+        {"text": "Dashboard", "url": "/dashboard", "active": false},
+        {"text": "Achievements", "url": "/achievements", "active": false}
+    ],
+    user=current_user
+    ) }}
 
     <main>
         <div class="container">

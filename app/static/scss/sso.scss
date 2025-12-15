@@ -1,0 +1,45 @@
+.sso-container {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-primary-900);
+  text-align: center;
+}
+
+.sso-label {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--color-secondary-300);
+  font-size: 0.875rem;
+}
+
+.sso-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sso-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-primary-900);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-primary-500);
+    transform: translateY(-2px);
+  }
+  
+  img, svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+  }
+}

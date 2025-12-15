@@ -2,9 +2,14 @@
 
 {% block title %}Home - Global Achievement Tracker{% endblock %}
 
+{% from "components/button.html" import button %}
+
 {% block content %}
 <div class="home-content flex">
     <h1>Welcome to Global Achievement Tracker</h1>
     <p>Track your gaming achievements across multiple platforms.</p>
 </div>
+<!--how to use components within a template, this is good, Now BUILD the components-->
+{{ button("Click Me", type="primary") }}
+{{ button("Cancel", type="secondary", size="md") }}
 {% endblock %}

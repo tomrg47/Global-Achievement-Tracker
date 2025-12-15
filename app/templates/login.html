@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Global Achievement Tracker{% endblock %}
+
+{% from "components/input.html" import input %}
+{% from "components/button.html" import button %}
+{% from "components/sso.html" import sso_buttons %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-header">
+        <h2>Welcome Back</h2>
+        <p>Please sign in to continue</p>
+    </div>
+    
+    <form action="{{ url_for('auth.api_login') }}" method="POST">
+        {{ input("username", "Username", placeholder="Enter your username", required=true) }}
+        {{ input("password", "Password", type="password", placeholder="Enter your password", required=true) }}
+        
+        <div class="flex flex--justify-center" style="margin-top: 2rem;">
+            {{ button("Sign In", type="primary", size="lg", rounded=true) }}
+        </div>
+    </form>
+
+    {{ sso_buttons() }}
+    
+    <div class="flex flex--justify-center" style="margin-top: 1.5rem;">
+        <p style="font-size: 0.9rem; color: var(--color-secondary-200);">
+            Don't have an account? <a href="{{ url_for('auth.signup') }}" style="color: var(--color-primary-400);">Sign up</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

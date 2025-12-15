@@ -1,0 +1,5 @@
+{% macro link(text, href="#", type="primary", size="md", rounded=true, disabled=false, style="") %}
+<a href="{{ href }}" class="btn btn-{{ type }} btn-{{ size }} {% if rounded %}btn-rounded{% else %}btn-unrounded{% endif %} {% if disabled %}disabled{% endif %}" {% if disabled %}aria-disabled="true" tabindex="-1"{% endif %} {% if style %}style="{{ style }}"{% endif %}>
+    {{ text }}
+</a>
+{% endmacro %}

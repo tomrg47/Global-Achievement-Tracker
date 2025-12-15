@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}My Account - Global Achievement Tracker{% endblock %}
+
+{% from "components/input.html" import input %}
+{% from "components/button.html" import button %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 2rem auto;">
+    <div class="flex flex--justify-between flex--align-center" style="margin-bottom: 2rem; border-bottom: 1px solid var(--color-primary-900); padding-bottom: 1rem;">
+        <h1>Account Settings</h1>
+        <div class="flex flex--align-center" style="gap: 1rem;">
+            <div style="width: 64px; height: 64px; background-color: var(--color-primary-500); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: white;">
+                {{ current_user.username[0].upper() }}
+            </div>
+            <div>
+                <h2 style="margin: 0; font-size: 1.5rem;">{{ current_user.username }}</h2>
+                <p style="margin: 0; color: var(--color-secondary-300);">{{ current_user.email }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+        <!-- Sidebar / Navigation -->
+        <div style="background-color: rgba(255, 255, 255, 0.03); padding: 1.5rem; border-radius: 1rem; height: fit-content;">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 0.5rem;">
+                    <a href="#" style="display: block; padding: 0.75rem 1rem; background-color: var(--color-primary-900); color: white; border-radius: 0.5rem; text-decoration: none; font-weight: 500;">Profile</a>
+                </li>
+                <li style="margin-bottom: 0.5rem;">
+                    <a href="#" style="display: block; padding: 0.75rem 1rem; color: var(--color-secondary-200); border-radius: 0.5rem; text-decoration: none; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.05)'" onmouseout="this.style.backgroundColor='transparent'">Security</a>
+                </li>
+                <li style="margin-bottom: 0.5rem;">
+                    <a href="#" style="display: block; padding: 0.75rem 1rem; color: var(--color-secondary-200); border-radius: 0.5rem; text-decoration: none; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.05)'" onmouseout="this.style.backgroundColor='transparent'">Linked Accounts</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div style="background-color: rgba(255, 255, 255, 0.03); padding: 2rem; border-radius: 1rem;">
+            <h3 style="margin-top: 0; margin-bottom: 1.5rem; color: var(--color-primary-300);">Profile Information</h3>
+            
+            <form>
+                <div class="flex flex--column" style="gap: 1rem;">
+                    {{ input("username", "Username", value=current_user.username, disabled=true) }}
+                    {{ input("email", "Email Address", type="email", value=current_user.email, disabled=true) }}
+                    
+                    <div style="margin-top: 1rem;">
+                        {{ button("Save Changes", type="primary", disabled=true) }}
+                        <p style="font-size: 0.8rem; color: var(--color-secondary-400); margin-top: 0.5rem;">Profile editing is currently disabled.</p>
+                    </div>
+                </div>
+            </form>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--color-primary-300);">Account Actions</h3>
+            <div class="flex flex--column" style="gap: 1rem;">
+                 {{ button("Change Password", type="secondary", size="sm") }}
+                 {{ button("Delete Account", type="ghost-light", size="sm", style="color: #ef4444; border-color: #ef4444;") }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

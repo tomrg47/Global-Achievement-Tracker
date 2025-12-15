@@ -1,0 +1,23 @@
+{% macro sso_buttons() %}
+<div class="sso-container">
+    <span class="sso-label">Or continue with</span>
+    <div class="sso-buttons">
+        <a href="#" class="sso-btn" title="Sign in with Google">
+            <img src="{{ url_for('static', filename='icons/google.svg') }}" alt="Google">
+        </a>
+        <a href="#" class="sso-btn" title="Sign in with Steam">
+            <img src="{{ url_for('static', filename='icons/steam.svg') }}" alt="Steam">
+        </a>
+        <a href="#" class="sso-btn" title="Sign in with Xbox">
+            <!-- Fallback for missing Xbox icon -->
+            <span style="font-size: 0.7rem; font-weight: bold; color: #107C10;">XBOX</span>
+        </a>
+        <a href="#" class="sso-btn" title="Sign in with PlayStation">
+            <img src="{{ url_for('static', filename='icons/playstation.svg') }}" alt="PlayStation">
+        </a>
+        <a href="#" class="sso-btn" title="Sign in with GOG">
+            <img src="{{ url_for('static', filename='icons/gog.svg') }}" alt="GOG">
+        </a>
+    </div>
+</div>
+{% endmacro %}
