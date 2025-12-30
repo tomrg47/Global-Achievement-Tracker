@@ -32,8 +32,8 @@ name: 'Build and Deploy to Cloud Run'
 on:
   push:
     branches:
-      - '"develop"'
-      - '"release/*"'
+      - 'develop'
+      - 'release/*'
 
 env:
   PROJECT_ID: 'achievement-tracker-coursework' # TODO: update to your Google Cloud project ID
