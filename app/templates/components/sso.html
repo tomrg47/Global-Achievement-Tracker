@@ -5,7 +5,7 @@
         <a href="#" class="sso-btn" title="Sign in with Google">
             <img src="{{ url_for('static', filename='icons/google.svg') }}" alt="Google">
         </a>
-        <a href="#" class="sso-btn" title="Sign in with Steam">
+        <a href="{{ url_for('auth.steam_login') }}" class="sso-btn" title="Sign in with Steam">
             <img src="{{ url_for('static', filename='icons/steam.svg') }}" alt="Steam">
         </a>
         <a href="#" class="sso-btn" title="Sign in with Xbox">

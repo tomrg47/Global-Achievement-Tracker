@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class BaseConfig:
-    SECRET_KEY = "your-secret-key"
+    SECRET_KEY = os.getenv("SECRET_KEY")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 

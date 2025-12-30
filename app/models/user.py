@@ -10,8 +10,9 @@ class User(UserMixin, db.Model):
 
     id = db.Column(db.String, primary_key=True, default=lambda: str(uuid4()))
     username = db.Column(db.String(50), unique=True, nullable=False)
-    email = db.Column(db.String(255), unique=True, nullable=False)
-    password_hash = db.Column(db.Text, nullable=False)
+    email = db.Column(db.String(255), unique=True, nullable=True)
+    password_hash = db.Column(db.Text, nullable=True)
+    steam_id = db.Column(db.String(50), unique=True, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def set_password(self, password):

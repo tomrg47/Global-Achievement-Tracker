@@ -25,39 +25,177 @@
         <div style="background-color: rgba(255, 255, 255, 0.03); padding: 1.5rem; border-radius: 1rem; height: fit-content;">
             <ul style="list-style: none; padding: 0; margin: 0;">
                 <li style="margin-bottom: 0.5rem;">
-                    <a href="#" style="display: block; padding: 0.75rem 1rem; background-color: var(--color-primary-900); color: white; border-radius: 0.5rem; text-decoration: none; font-weight: 500;">Profile</a>
+                    <button id="nav-profile" onclick="showSection('profile')" style="display: block; width: 100%; text-align: left; border: none; cursor: pointer; font-family: inherit; font-size: inherit; padding: 0.75rem 1rem; background-color: var(--color-primary-900); color: white; border-radius: 0.5rem; font-weight: 500;">Profile</button>
                 </li>
                 <li style="margin-bottom: 0.5rem;">
-                    <a href="#" style="display: block; padding: 0.75rem 1rem; color: var(--color-secondary-200); border-radius: 0.5rem; text-decoration: none; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.05)'" onmouseout="this.style.backgroundColor='transparent'">Security</a>
+                    <button id="nav-security" onclick="showSection('security')" style="display: block; width: 100%; text-align: left; border: none; cursor: pointer; font-family: inherit; font-size: inherit; padding: 0.75rem 1rem; background-color: transparent; color: var(--color-secondary-200); border-radius: 0.5rem; transition: background-color 0.2s;" onmouseover="if(this.style.color !== 'white') this.style.backgroundColor='rgba(255,255,255,0.05)'" onmouseout="if(this.style.color !== 'white') this.style.backgroundColor='transparent'">Security</button>
                 </li>
                 <li style="margin-bottom: 0.5rem;">
-                    <a href="#" style="display: block; padding: 0.75rem 1rem; color: var(--color-secondary-200); border-radius: 0.5rem; text-decoration: none; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.05)'" onmouseout="this.style.backgroundColor='transparent'">Linked Accounts</a>
+                    <button id="nav-linked" onclick="showSection('linked')" style="display: block; width: 100%; text-align: left; border: none; cursor: pointer; font-family: inherit; font-size: inherit; padding: 0.75rem 1rem; background-color: transparent; color: var(--color-secondary-200); border-radius: 0.5rem; transition: background-color 0.2s;" onmouseover="if(this.style.color !== 'white') this.style.backgroundColor='rgba(255,255,255,0.05)'" onmouseout="if(this.style.color !== 'white') this.style.backgroundColor='transparent'">Linked Accounts</button>
                 </li>
             </ul>
         </div>
 
         <!-- Main Content Area -->
-        <div style="background-color: rgba(255, 255, 255, 0.03); padding: 2rem; border-radius: 1rem;">
-            <h3 style="margin-top: 0; margin-bottom: 1.5rem; color: var(--color-primary-300);">Profile Information</h3>
+        <div style="background-color: rgba(255, 255, 255, 0.03); padding: 2rem; border-radius: 1rem; min-height: 400px;">
             
-            <form>
+            <!-- Profile Section -->
+            <div id="section-profile">
+                <h3 style="margin-top: 0; margin-bottom: 1.5rem; color: var(--color-primary-300);">Profile Information</h3>
+                <form>
+                    <div class="flex flex--column" style="gap: 1rem;">
+                        {{ input("username", "Username", value=current_user.username, disabled=false) }}
+                        {{ input("email", "Email Address", type="email", value=current_user.email, disabled=false) }}
+                        
+                        <div style="margin-top: 1rem;">
+                            {{ button("Save Changes", type="primary", disabled=false) }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Security Section -->
+            <div id="section-security" style="display: none;">
+                <h3 style="margin-top: 0; margin-bottom: 1.5rem; color: var(--color-primary-300);">Security Settings</h3>
                 <div class="flex flex--column" style="gap: 1rem;">
-                    {{ input("username", "Username", value=current_user.username, disabled=true) }}
-                    {{ input("email", "Email Address", type="email", value=current_user.email, disabled=true) }}
+                    <div style="padding: 1rem; background-color: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid var(--color-primary-900);">
+                        <h4 style="margin-top: 0; color: var(--color-secondary-100);">Password</h4>
+                        <p style="color: var(--color-secondary-300); font-size: 0.9rem; margin-bottom: 1rem;">Update your password to keep your account secure.</p>
+                        {{ button("Change Password", type="secondary", size="sm") }}
+                    </div>
                     
-                    <div style="margin-top: 1rem;">
-                        {{ button("Save Changes", type="primary", disabled=true) }}
-                        <p style="font-size: 0.8rem; color: var(--color-secondary-400); margin-top: 0.5rem;">Profile editing is currently disabled.</p>
+                    <div style="padding: 1rem; background-color: rgba(239, 68, 68, 0.05); border-radius: 0.5rem; border: 1px solid rgba(239, 68, 68, 0.2);">
+                        <h4 style="margin-top: 0; color: #ef4444;">Delete Account</h4>
+                        <p style="color: var(--color-secondary-300); font-size: 0.9rem; margin-bottom: 1rem;">Permanently delete your account and all associated data. This action cannot be undone.</p>
+                        {{ button("Delete Account", type="ghost-light", size="sm", style="color: #ef4444; border-color: #ef4444;") }}
                     </div>
                 </div>
-            </form>
-
-            <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--color-primary-300);">Account Actions</h3>
-            <div class="flex flex--column" style="gap: 1rem;">
-                 {{ button("Change Password", type="secondary", size="sm") }}
-                 {{ button("Delete Account", type="ghost-light", size="sm", style="color: #ef4444; border-color: #ef4444;") }}
             </div>
+
+            <!-- Linked Accounts Section -->
+            <div id="section-linked" style="display: none;">
+                <h3 style="margin-top: 0; margin-bottom: 1.5rem; color: var(--color-primary-300);">Linked Accounts</h3>
+                
+                <div class="flex flex--column" style="gap: 1rem;">
+                    <!-- Steam Link -->
+                    <div style="padding: 1.5rem; background-color: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid var(--color-primary-900); display: flex; align-items: center; justify-content: space-between;">
+                        <div class="flex flex--align-center" style="gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background-color: #171a21; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                <i class="fab fa-steam" style="font-size: 1.5rem; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: var(--color-secondary-100);">Steam</h4>
+                                {% if current_user.steam_id %}
+                                    <p style="margin: 0; color: #10b981; font-size: 0.9rem;">
+                                        <i class="fas fa-check-circle" style="margin-right: 0.25rem;"></i> Connected
+                                    </p>
+                                {% else %}
+                                    <p style="margin: 0; color: var(--color-secondary-400); font-size: 0.9rem;">Not connected</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div>
+                            {% if current_user.steam_id %}
+                                {{ button("Disconnect", type="ghost-light", size="sm", style="color: var(--color-secondary-300);") }}
+                            {% else %}
+                                <a href="{{ url_for('auth.steam_login') }}" class="button button--secondary button--sm" style="text-decoration: none;">Connect</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Xbox Link -->
+                    <div style="padding: 1.5rem; background-color: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid var(--color-primary-900); display: flex; align-items: center; justify-content: space-between;">
+                        <div class="flex flex--align-center" style="gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background-color: #107C10; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                <i class="fab fa-xbox" style="font-size: 1.5rem; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: var(--color-secondary-100);">Xbox</h4>
+                                <p style="margin: 0; color: var(--color-secondary-400); font-size: 0.9rem;">Not connected</p>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="button button--secondary button--sm" disabled style="opacity: 0.5; cursor: not-allowed;">Connect</button>
+                        </div>
+                    </div>
+
+                    <!-- PlayStation Link -->
+                    <div style="padding: 1.5rem; background-color: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid var(--color-primary-900); display: flex; align-items: center; justify-content: space-between;">
+                        <div class="flex flex--align-center" style="gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background-color: #003791; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                <i class="fab fa-playstation" style="font-size: 1.5rem; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: var(--color-secondary-100);">PlayStation</h4>
+                                <p style="margin: 0; color: var(--color-secondary-400); font-size: 0.9rem;">Not connected</p>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="button button--secondary button--sm" disabled style="opacity: 0.5; cursor: not-allowed;">Connect</button>
+                        </div>
+                    </div>
+
+                    <!-- Google Link -->
+                    <div style="padding: 1.5rem; background-color: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid var(--color-primary-900); display: flex; align-items: center; justify-content: space-between;">
+                        <div class="flex flex--align-center" style="gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background-color: #DB4437; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                <i class="fab fa-google" style="font-size: 1.5rem; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: var(--color-secondary-100);">Google</h4>
+                                <p style="margin: 0; color: var(--color-secondary-400); font-size: 0.9rem;">Not connected</p>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="button button--secondary button--sm" disabled style="opacity: 0.5; cursor: not-allowed;">Connect</button>
+                        </div>
+                    </div>
+
+                    <!-- GOG Link -->
+                    <div style="padding: 1.5rem; background-color: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid var(--color-primary-900); display: flex; align-items: center; justify-content: space-between;">
+                        <div class="flex flex--align-center" style="gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background-color: #5c2e91; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-gamepad" style="font-size: 1.5rem; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: var(--color-secondary-100);">GOG</h4>
+                                <p style="margin: 0; color: var(--color-secondary-400); font-size: 0.9rem;">Not connected</p>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="button button--secondary button--sm" disabled style="opacity: 0.5; cursor: not-allowed;">Connect</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
+
+<script>
+    function showSection(sectionName) {
+        // Hide all sections
+        document.getElementById('section-profile').style.display = 'none';
+        document.getElementById('section-security').style.display = 'none';
+        document.getElementById('section-linked').style.display = 'none';
+        
+        // Show target section
+        document.getElementById('section-' + sectionName).style.display = 'block';
+        
+        // Reset nav styles
+        const navIds = ['nav-profile', 'nav-security', 'nav-linked'];
+        navIds.forEach(id => {
+            const el = document.getElementById(id);
+            el.style.backgroundColor = 'transparent';
+            el.style.color = 'var(--color-secondary-200)';
+        });
+        
+        // Set active nav style
+        const activeNav = document.getElementById('nav-' + sectionName);
+        activeNav.style.backgroundColor = 'var(--color-primary-900)';
+        activeNav.style.color = 'white';
+    }
+</script>
 {% endblock %}

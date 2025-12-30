@@ -1,7 +1,10 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import login_user, logout_user, login_required, current_user
 from app.models.user import User
 from app import db
+from steam_openid import SteamOpenID
+import os
+import requests
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -71,6 +74,88 @@ def logout():
     logout_user()
     flash("You have been logged out.", "info")
     return redirect(url_for("auth.login"))
+
+@auth_bp.route("/login/steam")
+def steam_login():
+    realm = request.url_root
+    return_to = url_for("auth.steam_callback", _external=True)
+    steam = SteamOpenID(realm, return_to)
+    return redirect(steam.get_redirect_url())
+
+@auth_bp.route("/login/steam/callback")
+def steam_callback():
+    realm = request.url_root
+    return_to = url_for("auth.steam_callback", _external=True)
+    steam = SteamOpenID(realm, return_to)
+    steam_id = steam.validate_results(request.args)
+    
+    if not steam_id:
+        flash("Steam login failed", "error")
+        return redirect(url_for("auth.login"))
+        
+    user = User.query.filter_by(steam_id=steam_id).first()
+    
+    if user:
+        login_user(user)
+        flash(f"Welcome back, {user.username}!", "success")
+        return redirect(url_for("home.home"))
+    
+    # New user - fetch details and redirect to complete profile
+    username = f"Steam_{steam_id}"
+    api_key = os.getenv("STEAM_API_KEY")
+    if api_key:
+        try:
+            response = requests.get(f"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={api_key}&steamids={steam_id}")
+            data = response.json()
+            players = data.get("response", {}).get("players", [])
+            if players:
+                username = players[0].get("personaname", username)
+        except Exception as e:
+            print(f"Failed to fetch Steam profile: {e}")
+            
+    session['steam_id'] = steam_id
+    session['steam_username'] = username
+    return redirect(url_for("auth.complete_profile"))
+
+@auth_bp.route("/complete-profile", methods=["GET", "POST"])
+def complete_profile():
+    steam_id = session.get('steam_id')
+    if not steam_id:
+        return redirect(url_for("auth.login"))
+        
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirm_password")
+        
+        if password and password != confirm_password:
+            flash("Passwords do not match", "error")
+            return render_template("complete_profile.html", username=username)
+            
+        if User.query.filter_by(username=username).first():
+            flash("Username already exists", "error")
+            return render_template("complete_profile.html", username=username)
+            
+        if email and User.query.filter_by(email=email).first():
+            flash("Email already exists", "error")
+            return render_template("complete_profile.html", username=username)
+            
+        new_user = User(username=username, email=email, steam_id=steam_id)
+        if password:
+            new_user.set_password(password)
+            
+        db.session.add(new_user)
+        db.session.commit()
+        
+        session.pop('steam_id', None)
+        session.pop('steam_username', None)
+        
+        login_user(new_user)
+        flash(f"Account created! Welcome, {username}", "success")
+        return redirect(url_for("home.home"))
+        
+    return render_template("complete_profile.html", username=session.get('steam_username'))
 
 @auth_bp.route("/account")
 @login_required

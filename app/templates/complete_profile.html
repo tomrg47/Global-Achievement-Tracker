@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Complete Profile - Global Achievement Tracker{% endblock %}
+
+{% from "components/input.html" import input %}
+{% from "components/button.html" import button %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-header">
+        <h2>Complete Your Profile</h2>
+        <p>Please confirm your details to finish setting up your account.</p>
+    </div>
+    
+    <form action="{{ url_for('auth.complete_profile') }}" method="POST">
+        {{ input("username", "Username", value=username, placeholder="Choose a username", required=true) }}
+        {{ input("email", "Email Address", type="email", placeholder="Enter your email (optional)", required=false) }}
+        {{ input("password", "Password", type="password", placeholder="Create a password", required=true) }}
+        {{ input("confirm_password", "Confirm Password", type="password", placeholder="Confirm your password", required=true) }}
+        
+        <div class="flex flex--justify-center" style="margin-top: 2rem;">
+            {{ button("Create Account", type="primary", size="lg", rounded=true) }}
+        </div>
+    </form>
+</div>
+{% endblock %}
